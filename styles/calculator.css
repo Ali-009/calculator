@@ -23,7 +23,7 @@
 
 
 #result{
-  height: 20px;
+  height: 30px;
   border: thin solid black;
 
   grid-row: 1 / 2;
