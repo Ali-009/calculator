@@ -25,6 +25,9 @@
 #result{
   height: 30px;
   border: thin solid black;
+  padding-top: 10px;
+  padding-left: 5px;
+  font-family: sans-serif;
 
   grid-row: 1 / 2;
   grid-column: 1 / 3;
