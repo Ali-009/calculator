@@ -65,3 +65,37 @@ operations.forEach((operation) => operation.addEventListener('click',
   }
 
 }));
+
+
+let equals = document.querySelector('#equals');
+
+equals.addEventListener('click', (e) => {
+  if(!opClick && firstNum){
+    opClick = true;
+    secondNum = display.textContent;
+    display.textContent = operate(operator, +firstNum, +secondNum);
+
+    //clear the operations
+    firstNum = '';
+    secondNum = '';
+    operator = '';
+  }
+});
+
+let clear = document.querySelector('#clear');
+
+clear.addEventListener('click', (e) => {
+  firstNum = '';
+  secondNum = '';
+  operator = '';
+
+  display.textContent = '';
+});
+
+let undo = document.querySelector('#undo');
+
+undo.addEventListener('click', (e) => {
+  if(!opClick){
+    display.textContent = display.textContent.slice(0, -1);
+  }
+})
