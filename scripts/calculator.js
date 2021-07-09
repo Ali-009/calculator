@@ -51,16 +51,31 @@ digits.forEach((digit) => digit.addEventListener('click',
 operations.forEach((operation) => operation.addEventListener('click',
 (e) => {
 
+  if(opClick){
+    operator = e.target.textContent;
+  }
+
   if(!opClick){
     opClick = true;
     if(!firstNum){
       firstNum = display.textContent;
       operator = e.target.textContent;
     } else {
+
       secondNum = display.textContent;
+
+      if(+secondNum === 0 && operator === "/"){
+        display.textContent = `Error at (${firstNum} ${operator} ${secondNum}):
+        Can't divide by zero. Operation will be restarted.`;
+        firstNum = '';
+        secondNum = '';
+        operator = '';
+        return;
+      }
+
       let currentResult = operate(operator, +firstNum, +secondNum);
       display.textContent = `${firstNum} ${operator} ${secondNum} =
-          ${currentResult} ${e.target.textContent}`;
+          ${currentResult}`;
       firstNum = currentResult;
       operator = e.target.textContent;
     }
@@ -75,6 +90,16 @@ equals.addEventListener('click', (e) => {
   if(!opClick && firstNum){
     opClick = true;
     secondNum = display.textContent;
+
+    if(+secondNum === 0 && operator === "/"){
+      display.textContent = `Error at (${firstNum} ${operator} ${secondNum}):
+      Can't divide by zero. Operation will be restarted.`;
+      firstNum = '';
+      secondNum = '';
+      operator = '';
+      return;
+    }
+
     display.textContent = `Result:
         ${firstNum} ${operator} ${secondNum} =
         ${operate(operator, +firstNum, +secondNum)}`;
