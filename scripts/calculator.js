@@ -74,8 +74,7 @@ operations.forEach((operation) => operation.addEventListener('click',
       }
 
       let currentResult = operate(operator, +firstNum, +secondNum);
-      display.textContent = `${firstNum} ${operator} ${secondNum} =
-          ${currentResult}`;
+      display.textContent = currentResult;
       firstNum = currentResult;
       operator = e.target.textContent;
     }
@@ -100,9 +99,7 @@ equals.addEventListener('click', (e) => {
       return;
     }
 
-    display.textContent = `Result:
-        ${firstNum} ${operator} ${secondNum} =
-        ${operate(operator, +firstNum, +secondNum)}`;
+    display.textContent = operate(operator, +firstNum, +secondNum);
 
     //clear the operations
     firstNum = '';
