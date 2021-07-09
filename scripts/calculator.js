@@ -58,8 +58,10 @@ operations.forEach((operation) => operation.addEventListener('click',
       operator = e.target.textContent;
     } else {
       secondNum = display.textContent;
-      display.textContent = operate(operator, +firstNum, +secondNum);
-      firstNum = display.textContent;
+      let currentResult = operate(operator, +firstNum, +secondNum);
+      display.textContent = `${firstNum} ${operator} ${secondNum} =
+          ${currentResult} ${e.target.textContent}`;
+      firstNum = currentResult;
       operator = e.target.textContent;
     }
   }
@@ -73,7 +75,9 @@ equals.addEventListener('click', (e) => {
   if(!opClick && firstNum){
     opClick = true;
     secondNum = display.textContent;
-    display.textContent = operate(operator, +firstNum, +secondNum);
+    display.textContent = `Result:
+        ${firstNum} ${operator} ${secondNum} =
+        ${operate(operator, +firstNum, +secondNum)}`;
 
     //clear the operations
     firstNum = '';
