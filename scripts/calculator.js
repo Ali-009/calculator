@@ -32,14 +32,14 @@ let firstNum;
 let secondNum;
 let operator;
 //boolean to check if operation has been clicked
-let opClick;
+let operationClicked;
 
 //Displaying Numbers
 digits.forEach((digit) => digit.addEventListener('click',
 (e) => {
 
-  if(opClick){
-    opClick = false;
+  if(operationClicked){
+    operationClicked = false;
     display.textContent = '';
   }
 
@@ -51,12 +51,12 @@ digits.forEach((digit) => digit.addEventListener('click',
 operations.forEach((operation) => operation.addEventListener('click',
 (e) => {
 
-  if(opClick){
+  if(operationClicked){
     operator = e.target.textContent;
   }
 
-  if(!opClick){
-    opClick = true;
+  if(!operationClicked){
+    operationClicked = true;
     if(!firstNum){
       firstNum = display.textContent;
       operator = e.target.textContent;
@@ -86,8 +86,8 @@ operations.forEach((operation) => operation.addEventListener('click',
 let equals = document.querySelector('#equals');
 
 equals.addEventListener('click', (e) => {
-  if(!opClick && firstNum){
-    opClick = true;
+  if(!operationClicked && firstNum){
+    operationClicked = true;
     secondNum = display.textContent;
 
     if(+secondNum === 0 && operator === "/"){
@@ -121,7 +121,7 @@ clear.addEventListener('click', (e) => {
 let undo = document.querySelector('#undo');
 
 undo.addEventListener('click', (e) => {
-  if(!opClick){
+  if(!operationClicked){
     display.textContent = display.textContent.slice(0, -1);
   }
 })
